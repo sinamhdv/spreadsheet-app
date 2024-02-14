@@ -3,9 +3,8 @@ package ui.commands;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ui.CodeBrowser;
 import ui.MainMenu;
-import ui.ProjectMenu;
+import ui.SheetEditor;
 
 // enum representing regex pattern and handler method for terminal commands
 public enum MenuCommand {
@@ -19,11 +18,11 @@ public enum MenuCommand {
     
     // Sheet Editor
     INSERT_ROW("^\\s*insert\\s+row\\s+(?<data>\\S.*)$",
-            MainMenu.getInstance()::handleInsertRow),
+            SheetEditor.getInstance()::handleInsertRow),
     SORT_BY("^\\s*sort\\s+by\\s+(?<name>\\w+)\\s*$",
-            MainMenu.getInstance()::handleSortBy),
+            SheetEditor.getInstance()::handleSortBy),
     SEARCH("^\\s*search\\s+(?<name>\\w+)\\s+(?<data>\\S.*)$",
-            MainMenu.getInstance()::handleSearch);
+            SheetEditor.getInstance()::handleSearch);
 
     private final String regex;
     private final CommandHandler handler;
