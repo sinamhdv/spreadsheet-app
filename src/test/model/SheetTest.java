@@ -40,4 +40,14 @@ public class SheetTest {
         assertEquals("A", sheet.getSchema().get(0).getName());
         assertEquals(DataType.NUMBER, sheet.getSchema().get(1).getType());
     }
+    
+    @Test
+    void testOpenSheet() {
+        for (Sheet sheet : sheets) {
+            Sheet.getSheets().add(sheet);
+        }
+        assertEquals(ErrorMessage.NAME_NOT_FOUND, Sheet.openSheet("nonexistent"));
+        assertNull(Sheet.openSheet("asdasd"));
+        assertEquals(sheets[2], Sheet.getCurrentSheet());
+    }
 }
