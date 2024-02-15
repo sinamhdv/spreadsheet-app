@@ -2,6 +2,9 @@ package ui;
 
 import java.util.regex.Matcher;
 
+import model.ErrorMessage;
+import model.Sheet;
+
 // the initial menu of the application
 public class SheetEditor extends Menu {
     private static SheetEditor instance;
@@ -19,15 +22,21 @@ public class SheetEditor extends Menu {
     }
 
     public void handleInsertRow(Matcher matcher) {
-        System.out.println("CREATE");   // TODO
+        ErrorMessage error = Sheet.getCurrentSheet().insertRow(matcher.group("data").split(";"));
+        if (error != null) {
+            showAlert(error);
+        }
     }
 
     public void handleSortBy(Matcher matcher) {
-        System.out.println("LIST"); // TODO
+        ErrorMessage error = Sheet.getCurrentSheet().sortBy(matcher.group("name"));
+        if (error != null) {
+            showAlert(error);
+        }
     }
 
     public void handleSearch(Matcher matcher) {
-        System.out.println("OPEN"); // TODO
+        
     }
 
     public void handleInfo(Matcher matcher) {
@@ -35,6 +44,6 @@ public class SheetEditor extends Menu {
     }
 
     public void handleDisplay(Matcher matcher) {
-        
+
     }
 }
