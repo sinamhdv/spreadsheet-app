@@ -27,6 +27,23 @@ public class Sheet {
         return schema;
     }
 
+    public ErrorMessage insertRow(String[] data) {
+        if (data.length != schema.size()) {
+            return ErrorMessage.BAD_ROW_LENGTH;
+        }
+        Row row = new Row(data.length);
+        for (int i = 0; i < data.length; i++) {
+            Column col = schema.get(i);
+            row.getCells().set(i, Cell.of(col.getType(), data[i]));
+        }
+        rows.add(row);
+        return null;
+    }
+
+    public ErrorMessage sortBy(String colName) {
+        return null;    // TODO
+    }
+
     public static List<Sheet> getSheets() {
         return sheets;
     }

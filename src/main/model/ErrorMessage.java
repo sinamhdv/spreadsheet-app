@@ -4,7 +4,10 @@ package model;
 public enum ErrorMessage {
     // Main Menu
     NAME_NOT_FOUND("Name not found"),
-    NAME_EXISTS("Name already exists");
+    NAME_EXISTS("Name already exists"),
+    
+    // Sheet Editor
+    BAD_ROW_LENGTH("Incorrect row length");
 
     private final String text;
 
