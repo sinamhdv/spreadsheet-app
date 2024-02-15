@@ -3,7 +3,8 @@ package model;
 // enum representing an error message returned from model to ui
 public enum ErrorMessage {
     // Main Menu
-    NAME_NOT_FOUND("Name not found");
+    NAME_NOT_FOUND("Name not found"),
+    NAME_EXISTS("Name already exists");
 
     private final String text;
 
