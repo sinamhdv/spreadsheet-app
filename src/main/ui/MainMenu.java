@@ -38,6 +38,10 @@ public class MainMenu extends Menu {
     }
 
     public void handleOpenSheet(Matcher matcher) {
-        System.out.println("OPEN"); // TODO
+        ErrorMessage error = Sheet.openSheet(matcher.group("name"));
+        if (error != null) {
+            showAlert(error);
+        }
+        SheetEditor.getInstance().run();
     }
 }

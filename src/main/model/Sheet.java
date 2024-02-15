@@ -28,4 +28,8 @@ public class Sheet {
     public static ErrorMessage create(String name, String[] args) {
         return null;    // TODO
     }
+
+    public static ErrorMessage openSheet(String name) {
+        return null;    // TODO
+    }
 }
