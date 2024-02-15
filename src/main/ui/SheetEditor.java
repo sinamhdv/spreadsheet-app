@@ -1,8 +1,10 @@
 package ui;
 
+import java.util.List;
 import java.util.regex.Matcher;
 
 import model.ErrorMessage;
+import model.Row;
 import model.Sheet;
 
 // the initial menu of the application
@@ -36,7 +38,17 @@ public class SheetEditor extends Menu {
     }
 
     public void handleSearch(Matcher matcher) {
-        
+        List<Row> result = Sheet.getCurrentSheet().search(matcher.group("name"), matcher.group("data"));
+        if (result == null) {
+            showAlert(ErrorMessage.COLUMN_NOT_FOUND);
+            return;
+        }
+        System.out.println("Matches: ");
+        System.out.println("============");
+        for (Row row : result) {
+            displayRow(row);
+        }
+        System.out.println("");
     }
 
     public void handleInfo(Matcher matcher) {
@@ -45,5 +57,9 @@ public class SheetEditor extends Menu {
 
     public void handleDisplay(Matcher matcher) {
 
+    }
+
+    private void displayRow(Row row) {
+        
     }
 }
