@@ -2,6 +2,9 @@ package ui;
 
 import java.util.regex.Matcher;
 
+import model.ErrorMessage;
+import model.Sheet;
+
 // the initial menu of the application
 public class MainMenu extends Menu {
     private static MainMenu instance;
@@ -19,7 +22,10 @@ public class MainMenu extends Menu {
     }
 
     public void handleCreateSheet(Matcher matcher) {
-        System.out.println("CREATE");   // TODO
+        ErrorMessage error = Sheet.create(matcher.group("name"), matcher.group("args").split(";"));
+        if (error != null) {
+            showAlert(error);
+        }
     }
 
     public void handleListSheets(Matcher matcher) {
