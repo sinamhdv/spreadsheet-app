@@ -59,6 +59,15 @@ public class Sheet {
         return null;
     }
 
+    public List<Row> search(String name, String data) {
+        int index = getColumnIndexByName(name);
+        if (index == -1) {
+            return null;
+        }
+        List<Row> result = new ArrayList<>();
+        return result;  // TODO
+    }
+
     public static List<Sheet> getSheets() {
         return sheets;
     }
