@@ -23,6 +23,10 @@ public class Sheet {
         return rows;
     }
 
+    public List<Column> getSchema() {
+        return schema;
+    }
+
     public static List<Sheet> getSheets() {
         return sheets;
     }
