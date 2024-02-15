@@ -9,6 +9,7 @@ public class Sheet {
     private List<Column> schema;
 
     private static List<Sheet> sheets = new ArrayList<>();
+    private static Sheet currentSheet;
 
     public Sheet(String name, int columnCount) {
         this.name = name;
@@ -25,6 +26,10 @@ public class Sheet {
 
     public static List<Sheet> getSheets() {
         return sheets;
+    }
+
+    public static Sheet getCurrentSheet() {
+        return currentSheet;
     }
 
     public static Sheet getSheetByName(String name) {
@@ -50,6 +55,11 @@ public class Sheet {
     }
 
     public static ErrorMessage openSheet(String name) {
-        return null;    // TODO
+        Sheet sheet = getSheetByName(name);
+        if (sheet == null) {
+            return ErrorMessage.NAME_NOT_FOUND;
+        }
+        currentSheet = sheet;
+        return null;
     }
 }
