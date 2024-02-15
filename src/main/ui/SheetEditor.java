@@ -29,4 +29,12 @@ public class SheetEditor extends Menu {
     public void handleSearch(Matcher matcher) {
         System.out.println("OPEN"); // TODO
     }
+
+    public void handleInfo(Matcher matcher) {
+
+    }
+
+    public void handleDisplay(Matcher matcher) {
+        
+    }
 }
