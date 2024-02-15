@@ -6,14 +6,13 @@ import java.util.List;
 public class Sheet {
     private String name;
     private List<Row> rows = new ArrayList<>();
-    private List<Column> schema;
+    private List<Column> schema = new ArrayList<>();
 
     private static List<Sheet> sheets = new ArrayList<>();
     private static Sheet currentSheet;
 
-    public Sheet(String name, int columnCount) {
+    public Sheet(String name) {
         this.name = name;
-        this.schema = new ArrayList<>(columnCount);
     }
 
     public String getName() {
@@ -45,7 +44,7 @@ public class Sheet {
         if (getSheetByName(name) != null) {
             return ErrorMessage.NAME_EXISTS;
         }
-        Sheet sheet = new Sheet(name, args.length);
+        Sheet sheet = new Sheet(name);
         for (String col : args) {
             String[] splitted = col.split(":");
             sheet.schema.add(new Column(splitted[0], DataType.valueOf(splitted[1])));
