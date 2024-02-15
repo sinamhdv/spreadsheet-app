@@ -1,6 +1,7 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class Sheet {
@@ -40,8 +41,22 @@ public class Sheet {
         return null;
     }
 
+    private int getColumnIndexByName(String name) {
+        for (int i = 0; i < schema.size(); i++) {
+            if (schema.get(i).getName().equals(name)) {
+                return i;
+            }
+        }
+        return -1;
+    }
+
     public ErrorMessage sortBy(String colName) {
-        return null;    // TODO
+        int index = getColumnIndexByName(colName);
+        if (index == -1) {
+            return ErrorMessage.COLUMN_NOT_FOUND;
+        }
+        Collections.sort(rows, (r1, r2) -> r1.getCells().get(index).compareTo(r2.getCells().get(index)));
+        return null;
     }
 
     public static List<Sheet> getSheets() {

@@ -7,7 +7,8 @@ public enum ErrorMessage {
     NAME_EXISTS("Name already exists"),
     
     // Sheet Editor
-    BAD_ROW_LENGTH("Incorrect row length");
+    BAD_ROW_LENGTH("Incorrect row length"),
+    COLUMN_NOT_FOUND("Column not found");
 
     private final String text;
 

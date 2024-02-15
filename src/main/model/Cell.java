@@ -15,6 +15,14 @@ public class Cell {
         this.data = data;
     }
 
+    public int compareTo(Cell other) {
+        if (data.getClass().equals(Double.class)) {
+            return ((Double)data).compareTo((Double)other.data);
+        } else {
+            return ((String)data).compareTo((String)other.data);
+        }
+    }
+
     public static Cell of(DataType type, String data) {
         switch (type) {
             case STRING:
