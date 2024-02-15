@@ -9,7 +9,7 @@ import ui.SheetEditor;
 // enum representing regex pattern and handler method for terminal commands
 public enum MenuCommand {
     // Main Menu
-    CREATE_SHEET("^\\s*create\\s+sheet\\s+(?<name>\\w+)\\s+(?<args>\\S.+)$",
+    CREATE_SHEET("^\\s*create\\s+sheet\\s+(?<name>\\w+)\\s+(?<args>(\\w+:\\w+\\s+)*\\w+:\\w+)\\s*$",
             MainMenu.getInstance()::handleCreateSheet),
     LIST_SHEETS("^\\s*list\\s+sheets\\s*$",
             MainMenu.getInstance()::handleListSheets),
