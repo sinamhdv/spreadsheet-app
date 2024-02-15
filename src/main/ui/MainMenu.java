@@ -29,7 +29,12 @@ public class MainMenu extends Menu {
     }
 
     public void handleListSheets(Matcher matcher) {
-        System.out.println("LIST"); // TODO
+        System.out.println("List of sheets:");
+        System.out.println("================");
+        for (Sheet sheet : Sheet.getSheets()) {
+            System.out.println(sheet.getName());
+        }
+        System.out.println("");
     }
 
     public void handleOpenSheet(Matcher matcher) {
