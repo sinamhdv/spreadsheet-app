@@ -22,7 +22,7 @@ public class MainMenu extends Menu {
     }
 
     public void handleCreateSheet(Matcher matcher) {
-        ErrorMessage error = Sheet.create(matcher.group("name"), matcher.group("args").split("\\s+"));
+        ErrorMessage error = Sheet.create(matcher.group("name"), matcher.group("args").strip().split("\\s+"));
         if (error != null) {
             showAlert(error);
         }
