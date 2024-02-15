@@ -20,16 +20,6 @@ public class SheetTest {
     }
 
     @Test
-    void testGetSheetByName() {
-        for (Sheet sheet : sheets) {
-            Sheet.getSheets().add(sheet);
-        }
-        assertEquals(sheets[0], Sheet.getSheetByName(sheets[0].getName()));
-        assertEquals(sheets[1], Sheet.getSheetByName(sheets[1].getName()));
-        assertNull(Sheet.getSheetByName("nonexistent"));
-    }
-
-    @Test
     void testCreateSheet() {
         assertNull(Sheet.create("ABCD", new String[] {"A:STRING", "B:NUMBER"}));
         assertEquals(ErrorMessage.NAME_EXISTS,

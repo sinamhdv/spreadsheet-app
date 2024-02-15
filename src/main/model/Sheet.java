@@ -52,7 +52,7 @@ public class Sheet {
         return currentSheet;
     }
 
-    public static Sheet getSheetByName(String name) {
+    private static Sheet getSheetByName(String name) {
         for (Sheet sheet : sheets) {
             if (sheet.getName().equals(name)) {
                 return sheet;
