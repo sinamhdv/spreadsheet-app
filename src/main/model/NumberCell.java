@@ -1,6 +1,8 @@
 package model;
 
 public class NumberCell extends Cell {
+    private static final Double EPSILON = 1e-8;
+
     private Double data;
 
     public NumberCell(Double data) {
@@ -29,5 +31,14 @@ public class NumberCell extends Cell {
             str = str.substring(0, Cell.MAX_REPR_WIDTH - 3) + "...";
         }
         return str;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass().equals(getClass())) {
+            Double otherData = ((NumberCell)obj).getData();
+            return Math.abs(data - otherData) <= EPSILON;
+        }
+        return false;
     }
 }

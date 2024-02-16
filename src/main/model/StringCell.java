@@ -30,4 +30,12 @@ public class StringCell extends Cell {
         }
         return str;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj.getClass().equals(getClass())) {
+            return ((StringCell)obj).getData().equals(data);
+        }
+        return false;
+    }
 }
