@@ -32,10 +32,10 @@ public class Sheet {
         if (data.length != schema.size()) {
             return ErrorMessage.BAD_ROW_LENGTH;
         }
-        Row row = new Row(data.length);
+        Row row = new Row();
         for (int i = 0; i < data.length; i++) {
             Column col = schema.get(i);
-            row.getCells().set(i, Cell.of(col.getType(), data[i]));
+            row.getCells().add(Cell.of(col.getType(), data[i]));
         }
         rows.add(row);
         return null;

@@ -4,11 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Row {
-    private List<Cell> cells;
-
-    public Row(int size) {
-        cells = new ArrayList<>(size);
-    }
+    private List<Cell> cells = new ArrayList<>();
 
     public List<Cell> getCells() {
         return cells;
