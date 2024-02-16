@@ -56,14 +56,16 @@ public class Sheet {
             return ErrorMessage.COLUMN_NOT_FOUND;
         }
         Collections.sort(rows, (r1, r2) -> {
-            if (r1 == null && r2 == null) {
+            Cell c1 = r1.getCells().get(index);
+            Cell c2 = r2.getCells().get(index);
+            if (c1 == null && c2 == null) {
                 return 0;
-            } else if (r1 == null) {
+            } else if (c1 == null) {
                 return 1;
-            } else if (r2 == null) {
+            } else if (c2 == null) {
                 return -1;
             }
-            return r1.getCells().get(index).compareTo(r2.getCells().get(index));
+            return c1.compareTo(c2);
         });
         return null;
     }
