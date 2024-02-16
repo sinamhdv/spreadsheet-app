@@ -11,7 +11,7 @@ public abstract class Cell {
         switch (type) {
             case STRING:
                 return new StringCell(data);
-            case NUMBER:
+            default:
                 try {
                     Double number = Double.parseDouble(data);
                     return new NumberCell(number);
