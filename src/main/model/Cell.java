@@ -1,55 +1,22 @@
 package model;
 
-public class Cell {
-    private static final int MAX_REPR_WIDTH = 16;
+public abstract class Cell {
+    protected static final int MAX_REPR_WIDTH = 16;
 
-    private Object data;
+    public abstract Object getData();
 
-    public Cell(Object data) {
-        this.data = data;
-    }
+    public abstract void setData(Object data);
 
-    public Object getData() {
-        return data;
-    }
-
-    public void setData(Object data) {
-        this.data = data;
-    }
-
-    public String getStringRepr() {
-        String str = (String)data;
-        if (str.length() > MAX_REPR_WIDTH) {
-            str = str.substring(0, MAX_REPR_WIDTH - 3) + "...";
-        }
-        return str;
-    }
-
-    public String getNumberRepr() {
-        Double num = (Double)data;
-        String str = String.format("%." + MAX_REPR_WIDTH + "f", num);
-        if (str.length() > MAX_REPR_WIDTH) {
-            str = str.substring(0, MAX_REPR_WIDTH - 3) + "...";
-        }
-        return str;
-    }
-
-    public int compareTo(Cell other) {
-        if (data.getClass().equals(Double.class)) {
-            return ((Double)data).compareTo((Double)other.data);
-        } else {
-            return ((String)data).compareTo((String)other.data);
-        }
-    }
+    public abstract int compareTo(Cell other);
 
     public static Cell of(DataType type, String data) {
         switch (type) {
             case STRING:
-                return new Cell(data);
+                return new StringCell(data);
             case NUMBER:
                 try {
                     Double number = Double.parseDouble(data);
-                    return new Cell(number);
+                    return new NumberCell(number);
                 } catch (NumberFormatException e) {
                     return null;
                 }

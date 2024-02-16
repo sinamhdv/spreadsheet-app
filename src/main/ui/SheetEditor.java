@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 
 import model.Cell;
-import model.Column;
 import model.ErrorMessage;
 import model.Row;
 import model.Sheet;
@@ -62,18 +61,8 @@ public class SheetEditor extends Menu {
     }
 
     private void displayRow(Row row) {
-        List<Column> schema = Sheet.getCurrentSheet().getSchema();
-        int index = 0;
         for (Cell cell : row.getCells()) {
-            switch (schema.get(index).getType()) {
-                case STRING:
-                    System.out.print(cell.getStringRepr());
-                    break;
-                case NUMBER:
-                    System.out.print(cell.getNumberRepr());
-                    break;
-            }
-            index++;
+            System.out.print(cell.toString());
         }
     }
 }
