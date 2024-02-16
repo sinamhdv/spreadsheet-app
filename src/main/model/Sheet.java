@@ -65,7 +65,16 @@ public class Sheet {
             return null;
         }
         List<Row> result = new ArrayList<>();
-        return result;  // TODO
+        Cell referenceCell = Cell.of(schema.get(index).getType(), data);
+        if (referenceCell == null) {
+            return result;
+        }
+        for (Row row : rows) {
+            if (row.getCells().get(index).equals(referenceCell)) {
+                result.add(row);
+            }
+        }
+        return result;
     }
 
     public static List<Sheet> getSheets() {
