@@ -33,9 +33,9 @@ public class SheetTest {
         assertNull(sheet.insertRow(new String[] {"123", "2.4", "3.7"}));
         assertNull(sheet.insertRow(new String[] {"aa", "bb", "1.5798"}));
         assertEquals("123", sheet.getRows().get(0).getCells().get(0).getData());
-        assertEquals(2.4, sheet.getRows().get(0).getCells().get(1));
-        assertEquals(3.7, sheet.getRows().get(0).getCells().get(2));
-        assertEquals(1.5798, sheet.getRows().get(1).getCells().get(2));
+        assertEquals(2.4, sheet.getRows().get(0).getCells().get(1).getData());
+        assertEquals(3.7, sheet.getRows().get(0).getCells().get(2).getData());
+        assertEquals(1.5798, sheet.getRows().get(1).getCells().get(2).getData());
         assertNull(sheet.getRows().get(1).getCells().get(1));
     }
 

@@ -1,7 +1,7 @@
 package model;
 
 public class NumberCell extends Cell {
-    private static final Double EPSILON = 1e-8;
+    private static final double EPSILON = 1e-8;
 
     private Double data;
 
