@@ -4,12 +4,15 @@ import java.util.List;
 import java.util.regex.Matcher;
 
 import model.Cell;
+import model.Column;
 import model.ErrorMessage;
 import model.Row;
 import model.Sheet;
 
 // the initial menu of the application
 public class SheetEditor extends Menu {
+    private static final int CELL_REPR_WIDTH = 16;
+
     private static SheetEditor instance;
 
     // MODIFIES: instance
@@ -52,17 +55,43 @@ public class SheetEditor extends Menu {
         System.out.println("");
     }
 
-    public void handleInfo(Matcher matcher) {
-
+    public void handleDisplay(Matcher matcher) {
+        Sheet sheet = Sheet.getCurrentSheet();
+        System.out.printf("%s (%dx%d):\n", sheet.getName(), sheet.getRows().size(), sheet.getSchema().size());
+        displaySchema(sheet.getSchema());
+        int index = 1;
+        for (Row row : sheet.getRows()) {
+            System.out.printf("%8d) ", index);
+            displayRow(row);
+            index++;
+        }
     }
 
-    public void handleDisplay(Matcher matcher) {
-
+    private void displaySchema(List<Column> schema) {
+        System.out.print("          ");
+        for (Column column : schema) {
+            printWithAdjustedLength(column.getName());
+        }
+        System.out.print("\n          ");
+        for (Column column : schema) {
+            printWithAdjustedLength(column.getType().toString());
+        }
+        System.out.println("");
     }
 
     private void displayRow(Row row) {
         for (Cell cell : row.getCells()) {
-            System.out.print(cell.toString());
+            printWithAdjustedLength(cell.toString());
         }
+        System.out.println("");
+    }
+
+    private void printWithAdjustedLength(String str) {
+        if (str.length() > CELL_REPR_WIDTH) {
+            System.out.print(str.substring(0, CELL_REPR_WIDTH - 3) + "...");
+        } else {
+            System.out.print(str);
+        }
+        System.out.print(" | ");
     }
 }
