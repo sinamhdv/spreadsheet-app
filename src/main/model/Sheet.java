@@ -77,6 +77,13 @@ public class Sheet {
         return result;
     }
 
+    public Double sumRow(int index) {
+        if (index >= rows.size()) {
+            return null;
+        }
+        return rows.get(index).getSum(schema);
+    }
+
     public static List<Sheet> getSheets() {
         return sheets;
     }
