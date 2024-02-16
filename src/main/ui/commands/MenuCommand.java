@@ -23,7 +23,8 @@ public enum MenuCommand {
             SheetEditor.getInstance()::handleSortBy),
     SEARCH("^\\s*search\\s+(?<name>\\w+)\\s+(?<data>\\S.*)$",
             SheetEditor.getInstance()::handleSearch),
-    DISPLAY_SHEET("^\\s*display\\s+sheet\\s*$", SheetEditor.getInstance()::handleDisplay);
+    DISPLAY_SHEET("^\\s*display\\s+sheet\\s*$", SheetEditor.getInstance()::handleDisplay),
+    SUM_ROW("^\\s*sum\\s+row\\s+(?<index>\\d+)\\s*$", SheetEditor.getInstance()::handleSumRow);
 
     private final String regex;
     private final CommandHandler handler;

@@ -55,6 +55,16 @@ public class SheetEditor extends Menu {
         System.out.println("");
     }
 
+    public void handleSumRow(Matcher matcher) {
+        int index = Integer.parseInt(matcher.group("index"));
+        Double sum = Sheet.getCurrentSheet().sumRow(index);
+        if (sum == null) {
+            showAlert(ErrorMessage.INVALID_INDEX);
+            return;
+        }
+        System.out.println("Sum of row #" + index + " is " + sum);
+    }
+
     public void handleDisplay(Matcher matcher) {
         Sheet sheet = Sheet.getCurrentSheet();
         System.out.printf("%s (%dx%d):\n", sheet.getName(), sheet.getRows().size(), sheet.getSchema().size());
