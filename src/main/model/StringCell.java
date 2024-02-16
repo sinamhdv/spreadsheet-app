@@ -29,6 +29,9 @@ public class StringCell extends Cell {
 
     @Override
     public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
         if (obj.getClass().equals(getClass())) {
             return ((StringCell)obj).getData().equals(data);
         }

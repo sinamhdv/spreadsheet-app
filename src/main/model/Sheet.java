@@ -55,7 +55,16 @@ public class Sheet {
         if (index == -1) {
             return ErrorMessage.COLUMN_NOT_FOUND;
         }
-        Collections.sort(rows, (r1, r2) -> r1.getCells().get(index).compareTo(r2.getCells().get(index)));
+        Collections.sort(rows, (r1, r2) -> {
+            if (r1 == null && r2 == null) {
+                return 0;
+            } else if (r1 == null) {
+                return 1;
+            } else if (r2 == null) {
+                return -1;
+            }
+            return r1.getCells().get(index).compareTo(r2.getCells().get(index));
+        });
         return null;
     }
 
@@ -70,7 +79,7 @@ public class Sheet {
             return result;
         }
         for (Row row : rows) {
-            if (row.getCells().get(index).equals(referenceCell)) {
+            if (referenceCell.equals(row.getCells().get(index))) {
                 result.add(row);
             }
         }
