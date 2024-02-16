@@ -23,7 +23,6 @@ public enum MenuCommand {
             SheetEditor.getInstance()::handleSortBy),
     SEARCH("^\\s*search\\s+(?<name>\\w+)\\s+(?<data>\\S.*)$",
             SheetEditor.getInstance()::handleSearch),
-    SHOW_INFO("^\\s*info\\s*$", SheetEditor.getInstance()::handleInfo),
     DISPLAY_SHEET("^\\s*display\\s+sheet\\s*$", SheetEditor.getInstance()::handleDisplay);
 
     private final String regex;

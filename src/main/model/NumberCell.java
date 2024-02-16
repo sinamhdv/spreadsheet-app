@@ -26,11 +26,7 @@ public class NumberCell extends Cell {
 
     @Override
     public String toString() {
-        String str = String.format("%." + Cell.MAX_REPR_WIDTH + "f", data);
-        if (str.length() > Cell.MAX_REPR_WIDTH) {
-            str = str.substring(0, Cell.MAX_REPR_WIDTH - 3) + "...";
-        }
-        return str;
+        return String.format("%.6f", data);
     }
 
     @Override

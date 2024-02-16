@@ -1,8 +1,6 @@
 package model;
 
 public abstract class Cell {
-    protected static final int MAX_REPR_WIDTH = 16;
-
     public abstract Object getData();
 
     public abstract void setData(Object data);

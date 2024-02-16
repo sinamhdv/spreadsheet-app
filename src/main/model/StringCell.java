@@ -24,11 +24,7 @@ public class StringCell extends Cell {
 
     @Override
     public String toString() {
-        String str = data;
-        if (str.length() > MAX_REPR_WIDTH) {
-            str = str.substring(0, MAX_REPR_WIDTH - 3) + "...";
-        }
-        return str;
+        return data;
     }
 
     @Override
