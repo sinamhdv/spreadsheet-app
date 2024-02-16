@@ -15,12 +15,12 @@ public class SheetTest {
     @BeforeEach
     void initializeTests() {
         Sheet.getSheets().clear();
-        Sheet.create("Sheet-B", new String[] {"A:STRING", "B:NUMBER", "x:NUMBER"});
+        Sheet.create("Sheet-B", new String[] {"A:STRING", "B:NUMBER", "x:NUMBER", "empty:NUMBER"});
         Sheet.openSheet("Sheet-B");
         sheet = Sheet.getCurrentSheet();
-        sheet.insertRow(new String[] {"123", "2.4", "3.7"});
-        sheet.insertRow(new String[] {"aa", "bb", "1.5798"});
-        sheet.insertRow(new String[] {"aa", "-11283.34", "-3l"});
+        sheet.insertRow(new String[] {"123", "2.4", "3.7", ""});
+        sheet.insertRow(new String[] {"aa", "bb", "1.5798", ""});
+        sheet.insertRow(new String[] {"aa", "-11283.34", "-3l", ""});
     }
 
     @Test
@@ -54,6 +54,14 @@ public class SheetTest {
         assertEquals("123", sheet.getRows().get(0).getCells().get(0).getData());
         assertEquals("aa", sheet.getRows().get(1).getCells().get(0).getData());
         assertEquals("aa", sheet.getRows().get(2).getCells().get(0).getData());
+    }
+
+    @Test
+    void testSortByNull() {
+        assertNull(sheet.sortBy("empty"));
+        assertEquals(3.7, sheet.getRows().get(0).getCells().get(2).getData());
+        assertEquals(1.5798, sheet.getRows().get(1).getCells().get(2).getData());
+        assertNull(sheet.getRows().get(2).getCells().get(2));
     }
 
     @Test

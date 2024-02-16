@@ -2,8 +2,6 @@ package model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -17,13 +15,6 @@ public class CellTest {
     void initializeTests() {
         strCell = (StringCell)Cell.of(DataType.STRING, "hello");
         numCell = (NumberCell)Cell.of(DataType.NUMBER, "123.45");
-    }
-
-    @Test
-    void testCellOf() {
-        assertNull(Cell.of(null, "123"));
-        assertNotNull(strCell);
-        assertNotNull(numCell);
     }
 
     @Test

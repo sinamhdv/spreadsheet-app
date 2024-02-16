@@ -16,10 +16,9 @@ public abstract class Cell {
                     Double number = Double.parseDouble(data);
                     return new NumberCell(number);
                 } catch (NumberFormatException e) {
-                    return null;
+                    break;
                 }
-            default:
-                return null;
         }
+        return null;
     }
 }
