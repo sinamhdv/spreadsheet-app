@@ -78,10 +78,10 @@ public class Sheet {
     }
 
     public Double sumRow(int index) {
-        if (index >= rows.size()) {
+        if (index <= 0 || index > rows.size()) {
             return null;
         }
-        return rows.get(index).getSum(schema);
+        return rows.get(index - 1).getSum(schema);
     }
 
     public static List<Sheet> getSheets() {

@@ -8,7 +8,8 @@ public enum ErrorMessage {
     
     // Sheet Editor
     BAD_ROW_LENGTH("Incorrect row length"),
-    COLUMN_NOT_FOUND("Column not found");
+    COLUMN_NOT_FOUND("Column not found"),
+    INVALID_INDEX("Index out of range");
 
     private final String text;
 
