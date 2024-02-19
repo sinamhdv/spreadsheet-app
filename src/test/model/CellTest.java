@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// tests for Cell, StringCell, and NumberCell
 public class CellTest {
     private StringCell strCell;
     private NumberCell numCell;

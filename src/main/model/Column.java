@@ -1,5 +1,6 @@
 package model;
 
+// the metadata describing a column in the dataset
 public class Column {
     private String name;
     private DataType type;

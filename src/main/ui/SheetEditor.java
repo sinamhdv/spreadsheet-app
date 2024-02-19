@@ -27,6 +27,7 @@ public class SheetEditor extends Menu {
         System.out.print("editor> ");
     }
 
+    // EFFECTS: command handler for insert row command
     public void handleInsertRow(Matcher matcher) {
         ErrorMessage error = Sheet.getCurrentSheet().insertRow(matcher.group("data").split(";"));
         if (error != null) {
@@ -34,6 +35,7 @@ public class SheetEditor extends Menu {
         }
     }
 
+    // EFFECTS: command handler for sort command
     public void handleSortBy(Matcher matcher) {
         ErrorMessage error = Sheet.getCurrentSheet().sortBy(matcher.group("name"));
         if (error != null) {
@@ -41,6 +43,7 @@ public class SheetEditor extends Menu {
         }
     }
 
+    // EFFECTS: command handler for search command
     public void handleSearch(Matcher matcher) {
         List<Row> result = Sheet.getCurrentSheet().search(matcher.group("name"), matcher.group("data"));
         if (result == null) {
@@ -55,6 +58,7 @@ public class SheetEditor extends Menu {
         System.out.println("");
     }
 
+    // EFFECTS: command handler for sum row command
     public void handleSumRow(Matcher matcher) {
         int index = Integer.parseInt(matcher.group("index"));
         Double sum = Sheet.getCurrentSheet().sumRow(index);
@@ -65,6 +69,7 @@ public class SheetEditor extends Menu {
         System.out.println("Sum of row #" + index + " is " + sum);
     }
 
+    // EFFECTS: display the whole sheet
     public void handleDisplay(Matcher matcher) {
         Sheet sheet = Sheet.getCurrentSheet();
         System.out.printf("%s (%dx%d):\n", sheet.getName(), sheet.getRows().size(), sheet.getSchema().size());
@@ -77,6 +82,7 @@ public class SheetEditor extends Menu {
         }
     }
 
+    // EFFECTS: display the schema of the current sheet
     private void displaySchema(List<Column> schema) {
         System.out.print("          ");
         for (Column column : schema) {
@@ -89,6 +95,7 @@ public class SheetEditor extends Menu {
         System.out.println("");
     }
 
+    // EFFECTS: display a single row of the sheet
     private void displayRow(Row row) {
         for (Cell cell : row.getCells()) {
             printWithAdjustedLength(cell.toString());
@@ -96,6 +103,7 @@ public class SheetEditor extends Menu {
         System.out.println("");
     }
 
+    // EFFECTS: print str with a fixed width
     private void printWithAdjustedLength(String str) {
         if (str.length() > CELL_REPR_WIDTH) {
             System.out.print(str.substring(0, CELL_REPR_WIDTH - 3) + "...");

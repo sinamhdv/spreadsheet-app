@@ -21,6 +21,7 @@ public class MainMenu extends Menu {
         System.out.print("> ");
     }
 
+    // EFFECTS: command handler for create sheet command
     public void handleCreateSheet(Matcher matcher) {
         ErrorMessage error = Sheet.create(matcher.group("name"), matcher.group("args").strip().split("\\s+"));
         if (error != null) {
@@ -28,6 +29,7 @@ public class MainMenu extends Menu {
         }
     }
 
+    // EFFECTS: command handler for listing sheets
     public void handleListSheets(Matcher matcher) {
         System.out.println("List of sheets:");
         System.out.println("================");
@@ -37,6 +39,7 @@ public class MainMenu extends Menu {
         System.out.println("");
     }
 
+    // EFFECTS: command handler for opening a sheet
     public void handleOpenSheet(Matcher matcher) {
         ErrorMessage error = Sheet.openSheet(matcher.group("name"));
         if (error != null) {

@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+// tests for static functions in Sheet class
 public class SheetManagementTest {
     private Sheet[] sheets;
 

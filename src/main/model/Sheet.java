@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+// a spreadsheet/table of information
 public class Sheet {
     private String name;
     private List<Row> rows = new ArrayList<>();
@@ -28,6 +29,9 @@ public class Sheet {
         return schema;
     }
 
+    // MODIFIES: this
+    // EFFECTS: add a row to the end of the sheet. In case of error returns
+    //          an ErrorMessage, otherwise returns null
     public ErrorMessage insertRow(String[] data) {
         if (data.length != schema.size()) {
             return ErrorMessage.BAD_ROW_LENGTH;
@@ -41,6 +45,8 @@ public class Sheet {
         return null;
     }
 
+    // EFFECTS: returns the index of the column with the given name.
+    //          returns -1 if not found
     private int getColumnIndexByName(String name) {
         for (int i = 0; i < schema.size(); i++) {
             if (schema.get(i).getName().equals(name)) {
@@ -50,6 +56,8 @@ public class Sheet {
         return -1;
     }
 
+    // MODIFIES: this
+    // EFFECTS: sorts the rows by the values in one column
     public ErrorMessage sortBy(String colName) {
         int index = getColumnIndexByName(colName);
         if (index == -1) {
@@ -70,6 +78,8 @@ public class Sheet {
         return null;
     }
 
+    // EFFECTS: search and return a list of rows containing given data in the specified column.
+    //          returns null if the column name is invalid.
     public List<Row> search(String name, String data) {
         int index = getColumnIndexByName(name);
         if (index == -1) {
@@ -88,6 +98,7 @@ public class Sheet {
         return result;
     }
 
+    // EFFECTS: sum the non-empty numeric cells in a row
     public Double sumRow(int index) {
         if (index <= 0 || index > rows.size()) {
             return null;
@@ -103,6 +114,7 @@ public class Sheet {
         return currentSheet;
     }
 
+    // EFFECTS: find a sheet by its name, or return null if not found
     private static Sheet getSheetByName(String name) {
         for (Sheet sheet : sheets) {
             if (sheet.getName().equals(name)) {
@@ -112,6 +124,8 @@ public class Sheet {
         return null;
     }
 
+    // MODIFIES: sheets
+    // EFFECTS: create a new sheet. returns an ErrorMessage or null if succeeded
     public static ErrorMessage create(String name, String[] args) {
         if (getSheetByName(name) != null) {
             return ErrorMessage.NAME_EXISTS;
@@ -125,6 +139,8 @@ public class Sheet {
         return null;
     }
 
+    // MODIFIES: currentSheet
+    // EFFECTS: open a sheet. returns an ErrorMessage or null if succeeded
     public static ErrorMessage openSheet(String name) {
         Sheet sheet = getSheetByName(name);
         if (sheet == null) {
