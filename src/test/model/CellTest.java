@@ -22,6 +22,7 @@ public class CellTest {
     void testToString() {
         assertEquals("hello", strCell.toString());
         assertEquals("123.450000", numCell.toString());
+        assertEquals("", new NumberCell(null).toString());
     }
 
     @Test
