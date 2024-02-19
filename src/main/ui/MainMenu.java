@@ -44,6 +44,7 @@ public class MainMenu extends Menu {
         ErrorMessage error = Sheet.openSheet(matcher.group("name"));
         if (error != null) {
             showAlert(error);
+            return;
         }
         SheetEditor.getInstance().run();
     }
