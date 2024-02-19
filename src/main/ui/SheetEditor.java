@@ -108,7 +108,7 @@ public class SheetEditor extends Menu {
         if (str.length() > CELL_REPR_WIDTH) {
             System.out.print(str.substring(0, CELL_REPR_WIDTH - 3) + "...");
         } else {
-            System.out.print(str);
+            System.out.printf("%-" + CELL_REPR_WIDTH + "s", str);
         }
         System.out.print(" | ");
     }
