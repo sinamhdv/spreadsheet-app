@@ -23,14 +23,23 @@ public class NumberCell extends Cell {
     // REQUIRES: other has an actual type of NumberCell
     // EFFECTS: compare the other cell with the current. Returns negative
     //          if 'this' is smaller, positive if 'this' is larger, and zero if they are equal.
+    //          empty cells are larger than other cells
     @Override
     public int compareTo(Cell other) {
+        if (data == null) {
+            return (other.getData() == null ? 0 : 1);
+        } else if (other.getData() == null) {
+            return -1;
+        }
         return data.compareTo((Double)other.getData());
     }
 
     // EFFECTS: return a string representation of this cell
     @Override
     public String toString() {
+        if (data == null) {
+            return "";
+        }
         return String.format("%.6f", data);
     }
 
@@ -42,6 +51,9 @@ public class NumberCell extends Cell {
         }
         if (obj.getClass().equals(getClass())) {
             Double otherData = ((NumberCell)obj).getData();
+            if (data == null || otherData == null) {
+                return false;
+            }
             return Math.abs(data - otherData) <= EPSILON;
         }
         return false;

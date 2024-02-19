@@ -37,7 +37,7 @@ public class SheetTest {
         assertEquals(2.4, sheet.getRows().get(0).getCells().get(1).getData());
         assertEquals(3.7, sheet.getRows().get(0).getCells().get(2).getData());
         assertEquals(1.5798, sheet.getRows().get(1).getCells().get(2).getData());
-        assertNull(sheet.getRows().get(1).getCells().get(1));
+        assertNull(sheet.getRows().get(1).getCells().get(1).getData());
     }
 
     @Test
@@ -46,7 +46,7 @@ public class SheetTest {
         assertNull(sheet.sortBy("B"));
         assertEquals(-11283.34, sheet.getRows().get(0).getCells().get(1).getData());
         assertEquals(2.4, sheet.getRows().get(1).getCells().get(1).getData());
-        assertNull(sheet.getRows().get(2).getCells().get(1));
+        assertNull(sheet.getRows().get(2).getCells().get(1).getData());
     }
 
     @Test
@@ -62,7 +62,7 @@ public class SheetTest {
         assertNull(sheet.sortBy("empty"));
         assertEquals(3.7, sheet.getRows().get(0).getCells().get(2).getData());
         assertEquals(1.5798, sheet.getRows().get(1).getCells().get(2).getData());
-        assertNull(sheet.getRows().get(2).getCells().get(2));
+        assertNull(sheet.getRows().get(2).getCells().get(2).getData());
     }
 
     @Test
@@ -78,7 +78,7 @@ public class SheetTest {
     void testSearchString() {
         List<Row> result = sheet.search("A", "aa");
         assertEquals(2, result.size());
-        assertNull(result.get(0).getCells().get(1));
+        assertNull(result.get(0).getCells().get(1).getData());
         assertEquals(-11283.34, result.get(1).getCells().get(1).getData());
     }
 

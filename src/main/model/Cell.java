@@ -10,8 +10,8 @@ public abstract class Cell {
 
     // REQUIRES: type != null
     // EFFECTS: create a cell of the given data type with the given data.
-    //          returns null in case of error in converting the data string to the
-    //          requested data type.
+    //          returns a cell with internal data null in case of error in
+    //          converting the data string to the requested data type.
     public static Cell of(DataType type, String data) {
         switch (type) {
             case STRING:
@@ -21,9 +21,8 @@ public abstract class Cell {
                     Double number = Double.parseDouble(data);
                     return new NumberCell(number);
                 } catch (NumberFormatException e) {
-                    break;
+                    return new NumberCell(null);
                 }
         }
-        return null;
     }
 }

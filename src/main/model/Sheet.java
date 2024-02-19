@@ -66,13 +66,6 @@ public class Sheet {
         Collections.sort(rows, (r1, r2) -> {
             Cell c1 = r1.getCells().get(index);
             Cell c2 = r2.getCells().get(index);
-            if (c1 == null && c2 == null) {
-                return 0;
-            } else if (c1 == null) {
-                return 1;
-            } else if (c2 == null) {
-                return -1;
-            }
             return c1.compareTo(c2);
         });
         return null;
@@ -87,9 +80,6 @@ public class Sheet {
         }
         List<Row> result = new ArrayList<>();
         Cell referenceCell = Cell.of(schema.get(index).getType(), data);
-        if (referenceCell == null) {
-            return result;
-        }
         for (Row row : rows) {
             if (referenceCell.equals(row.getCells().get(index))) {
                 result.add(row);

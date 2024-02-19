@@ -17,7 +17,7 @@ public class Row {
         double sum = 0;
         int i = 0;
         for (Cell cell : cells) {
-            if (cell != null && schema.get(i).getType().equals(DataType.NUMBER)) {
+            if (schema.get(i).getType().equals(DataType.NUMBER) && cell.getData() != null) {
                 sum += ((NumberCell)cell).getData();
             }
             i++;
