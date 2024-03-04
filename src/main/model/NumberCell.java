@@ -6,6 +6,7 @@ public class NumberCell extends Cell {
 
     private Double data;
 
+    // EFFECTS: construct a NumberCell object with the given data
     public NumberCell(Double data) {
         this.data = data;
     }

@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 public class SheetTest {
     private Sheet sheet;
 
+    // MODIFIES: sheet
+    // EFFECTS: initialize objects used in tests
     @BeforeEach
     void initializeTests() {
         Sheet.getSheets().clear();

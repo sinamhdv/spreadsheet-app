@@ -10,6 +10,7 @@ import ui.commands.MenuCommand;
 public abstract class Menu {
     private static final Scanner SCANNER = new Scanner(System.in);
 
+    // EFFECTS: print the menu prompt
     protected abstract void printPrompt();
 
     // EFFECTS: show an error message

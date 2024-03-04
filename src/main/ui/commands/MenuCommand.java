@@ -29,6 +29,8 @@ public enum MenuCommand {
     private final String regex;
     private final CommandHandler handler;
 
+    // EFFECTS: construct a MenuCommand enum instance with the
+    //          given command regex and command handler function
     private MenuCommand(String regex, CommandHandler handler) {
         this.regex = regex;
         this.handler = handler;

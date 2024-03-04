@@ -2,10 +2,14 @@ package model;
 
 // an abstract class for a cell in the table
 public abstract class Cell {
+    // EFFECTS: get the data of the current Cell
     public abstract Object getData();
 
+    // MODIFIES: this
+    // EFFECTS: set the data of the current cell
     public abstract void setData(Object data);
 
+    // EFFECTS: compare the current cell to another cell
     public abstract int compareTo(Cell other);
 
     // REQUIRES: type != null

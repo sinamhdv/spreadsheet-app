@@ -4,6 +4,7 @@ package model;
 public class StringCell extends Cell {
     private String data;
 
+    // EFFECTS: construct a StringCell object with the given data
     public StringCell(String data) {
         this.data = data;
     }

@@ -13,6 +13,7 @@ public class Sheet {
     private static List<Sheet> sheets = new ArrayList<>();
     private static Sheet currentSheet;
 
+    // EFFECTS: construct a Sheet object with the given name
     public Sheet(String name) {
         this.name = name;
     }

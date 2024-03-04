@@ -13,6 +13,7 @@ public enum ErrorMessage {
 
     private final String text;
 
+    // EFFECTS: construct an ErrorMessage enum object with given error text
     private ErrorMessage(String text) {
         this.text = text;
     }

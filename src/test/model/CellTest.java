@@ -12,6 +12,8 @@ public class CellTest {
     private StringCell strCell;
     private NumberCell numCell;
     
+    // MODIFIES: strCell, numCell
+    // EFFECTS: initialize objects for the tests
     @BeforeEach
     void initializeTests() {
         strCell = (StringCell)Cell.of(DataType.STRING, "hello");
