@@ -1,0 +1,27 @@
+{
+	"name": "testname",
+	"schema": [
+		{
+			"name": "colA",
+			"type": "NUMBER"
+		},
+		{
+			"name": "colB",
+			"type": "STRING"
+		}
+	],
+	"rows": [
+		{
+			"cells": [
+				{ "data": 1.23456789 },
+				{ "data": "string1" }
+			]
+		},
+		{
+			"cells": [
+				{ "data": -123456789 },
+				{ "data": "a very long string 2" }
+			]
+		}
+	]
+}
