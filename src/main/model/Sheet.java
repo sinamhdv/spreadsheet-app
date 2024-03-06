@@ -10,7 +10,6 @@ public class Sheet {
     private List<Row> rows = new ArrayList<>();
     private List<Column> schema = new ArrayList<>();
 
-    private static List<Sheet> sheets = new ArrayList<>();
     private static Sheet currentSheet;
 
     // EFFECTS: construct a Sheet object with the given name
@@ -97,45 +96,17 @@ public class Sheet {
         return rows.get(index - 1).getSum(schema);
     }
 
-    public static List<Sheet> getSheets() {
-        return sheets;
-    }
-
     public static Sheet getCurrentSheet() {
         return currentSheet;
-    }
-
-    // EFFECTS: find a sheet by its name, or return null if not found
-    private static Sheet getSheetByName(String name) {
-        for (Sheet sheet : sheets) {
-            if (sheet.getName().equals(name)) {
-                return sheet;
-            }
-        }
-        return null;
     }
 
     // MODIFIES: sheets
     // EFFECTS: create a new sheet. returns an ErrorMessage or null if succeeded
     public static ErrorMessage create(String name, String[] args) {
-        if (getSheetByName(name) != null) {
-            return ErrorMessage.NAME_EXISTS;
-        }
         Sheet sheet = new Sheet(name);
         for (String col : args) {
             String[] splitted = col.split(":");
             sheet.schema.add(new Column(splitted[0], DataType.valueOf(splitted[1])));
-        }
-        sheets.add(sheet);
-        return null;
-    }
-
-    // MODIFIES: currentSheet
-    // EFFECTS: open a sheet. returns an ErrorMessage or null if succeeded
-    public static ErrorMessage openSheet(String name) {
-        Sheet sheet = getSheetByName(name);
-        if (sheet == null) {
-            return ErrorMessage.NAME_NOT_FOUND;
         }
         currentSheet = sheet;
         return null;

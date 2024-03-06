@@ -28,24 +28,4 @@ public class MainMenu extends Menu {
             showAlert(error);
         }
     }
-
-    // EFFECTS: command handler for listing sheets
-    public void handleListSheets(Matcher matcher) {
-        System.out.println("List of sheets:");
-        System.out.println("================");
-        for (Sheet sheet : Sheet.getSheets()) {
-            System.out.println(sheet.getName());
-        }
-        System.out.println("");
-    }
-
-    // EFFECTS: command handler for opening a sheet
-    public void handleOpenSheet(Matcher matcher) {
-        ErrorMessage error = Sheet.openSheet(matcher.group("name"));
-        if (error != null) {
-            showAlert(error);
-            return;
-        }
-        SheetEditor.getInstance().run();
-    }
 }

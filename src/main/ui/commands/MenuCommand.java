@@ -11,10 +11,6 @@ public enum MenuCommand {
     // Main Menu
     CREATE_SHEET("^\\s*create\\s+sheet\\s+(?<name>\\w+)\\s+(?<args>(\\w+:\\w+\\s+)*\\w+:\\w+)\\s*$",
             MainMenu.getInstance()::handleCreateSheet),
-    LIST_SHEETS("^\\s*list\\s+sheets\\s*$",
-            MainMenu.getInstance()::handleListSheets),
-    OPEN_SHEET("^\\s*open\\s+sheet\\s+(?<name>\\w+)\\s*$",
-            MainMenu.getInstance()::handleOpenSheet),
     
     // Sheet Editor
     INSERT_ROW("^\\s*insert\\s+row\\s+(?<data>\\S.*)$",

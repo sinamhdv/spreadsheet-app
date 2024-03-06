@@ -17,9 +17,7 @@ public class SheetTest {
     // EFFECTS: initialize objects used in tests
     @BeforeEach
     void initializeTests() {
-        Sheet.getSheets().clear();
         Sheet.create("Sheet-B", new String[] {"A:STRING", "B:NUMBER", "x:NUMBER", "empty:NUMBER"});
-        Sheet.openSheet("Sheet-B");
         sheet = Sheet.getCurrentSheet();
         sheet.insertRow(new String[] {"123", "2.4", "3.7", ""});
         sheet.insertRow(new String[] {"aa", "bb", "1.5798", ""});
@@ -27,9 +25,17 @@ public class SheetTest {
     }
 
     @Test
+    void testCreateSheet() {
+        assertNull(Sheet.create("ABCD", new String[] {"A:STRING", "B:NUMBER"}));
+        Sheet sheet = Sheet.getCurrentSheet();
+        assertEquals("ABCD", sheet.getName());
+        assertEquals("A", sheet.getSchema().get(0).getName());
+        assertEquals(DataType.NUMBER, sheet.getSchema().get(1).getType());
+    }
+
+    @Test
     void testInsertRow() {
         assertNull(Sheet.create("Sheet-A", new String[] {"A:STRING", "B:NUMBER", "x:NUMBER"}));
-        assertNull(Sheet.openSheet("Sheet-A"));
         Sheet sheet = Sheet.getCurrentSheet();
         assertEquals(ErrorMessage.BAD_ROW_LENGTH, sheet.insertRow(new String[] {"asd"}));
         assertEquals(ErrorMessage.BAD_ROW_LENGTH, sheet.insertRow(new String[] {"a", "a", "a", "a"}));
