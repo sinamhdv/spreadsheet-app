@@ -28,4 +28,8 @@ public class MainMenu extends Menu {
             showAlert(error);
         }
     }
+
+    public void handleOpenSheet(Matcher matcher) {
+        // TODO
+    }
 }

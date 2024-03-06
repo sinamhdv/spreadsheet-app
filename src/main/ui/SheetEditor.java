@@ -69,6 +69,10 @@ public class SheetEditor extends Menu {
         System.out.println("Sum of row #" + index + " is " + sum);
     }
 
+    public void handleSaveSheet(Matcher matcher) {
+        // TODO
+    }
+
     // EFFECTS: display the whole sheet
     public void handleDisplay(Matcher matcher) {
         Sheet sheet = Sheet.getCurrentSheet();

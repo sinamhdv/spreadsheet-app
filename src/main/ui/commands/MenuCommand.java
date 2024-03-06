@@ -11,16 +11,15 @@ public enum MenuCommand {
     // Main Menu
     CREATE_SHEET("^\\s*create\\s+sheet\\s+(?<name>\\w+)\\s+(?<args>(\\w+:\\w+\\s+)*\\w+:\\w+)\\s*$",
             MainMenu.getInstance()::handleCreateSheet),
+    OPEN_SHEET("^\\s*open\\s+sheet\\s+(?<path>\\S.*)$", MainMenu.getInstance()::handleOpenSheet),
     
     // Sheet Editor
-    INSERT_ROW("^\\s*insert\\s+row\\s+(?<data>\\S.*)$",
-            SheetEditor.getInstance()::handleInsertRow),
-    SORT_BY("^\\s*sort\\s+by\\s+(?<name>\\w+)\\s*$",
-            SheetEditor.getInstance()::handleSortBy),
-    SEARCH("^\\s*search\\s+(?<name>\\w+)\\s+(?<data>\\S.*)$",
-            SheetEditor.getInstance()::handleSearch),
+    INSERT_ROW("^\\s*insert\\s+row\\s+(?<data>\\S.*)$", SheetEditor.getInstance()::handleInsertRow),
+    SORT_BY("^\\s*sort\\s+by\\s+(?<name>\\w+)\\s*$", SheetEditor.getInstance()::handleSortBy),
+    SEARCH("^\\s*search\\s+(?<name>\\w+)\\s+(?<data>\\S.*)$", SheetEditor.getInstance()::handleSearch),
     DISPLAY_SHEET("^\\s*display\\s+sheet\\s*$", SheetEditor.getInstance()::handleDisplay),
-    SUM_ROW("^\\s*sum\\s+row\\s+(?<index>\\d+)\\s*$", SheetEditor.getInstance()::handleSumRow);
+    SUM_ROW("^\\s*sum\\s+row\\s+(?<index>\\d+)\\s*$", SheetEditor.getInstance()::handleSumRow),
+    SAVE_SHEET("^\\s*save\\s+(?<path>\\S.*)$", SheetEditor.getInstance()::handleSaveSheet);
 
     private final String regex;
     private final CommandHandler handler;
