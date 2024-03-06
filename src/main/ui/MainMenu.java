@@ -29,6 +29,7 @@ public class MainMenu extends Menu {
         }
     }
 
+    // EFFECTS: command handler for 'open' command
     public void handleOpenSheet(Matcher matcher) {
         // TODO
     }

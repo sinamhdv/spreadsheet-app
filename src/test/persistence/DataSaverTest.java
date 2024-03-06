@@ -13,10 +13,13 @@ import org.junit.jupiter.api.Test;
 import model.DataType;
 import model.Sheet;
 
+// tests for data saver class
 public class DataSaverTest {
     private static final String SAVE_PATH = "./data/testSaveSheet.json";
     private Sheet sheet;
 
+    // MODIFIES: sheet
+    // EFFECTS: initialize the objects used by the tests
     @BeforeEach
     void initializeTests() {
         new File(SAVE_PATH).delete();

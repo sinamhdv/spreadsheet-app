@@ -12,6 +12,7 @@ import model.Row;
 import model.Sheet;
 import model.StringCell;
 
+// class to handle loading sheets from files
 public class DataLoader {
     private String filePath;
 
@@ -20,11 +21,13 @@ public class DataLoader {
         this.filePath = filePath;
     }
 
+    // EFFECTS: load a sheet object from filePath and return it
     public Sheet loadSheet() throws Exception {
         String data = readFile();
         return deserializeSheet(data);
     }
 
+    // EFFECTS: read all of the data of filePath and return it as a string
     private String readFile() throws Exception {
         FileInputStream file = new FileInputStream(filePath);
         byte[] dataBytes = file.readAllBytes();
@@ -33,6 +36,7 @@ public class DataLoader {
         return dataStr;
     }
 
+    // EFFECTS: convert a string into a Sheet object and return the resulting object
     private Sheet deserializeSheet(String data) {
         JSONObject json = new JSONObject(data);
         String name = json.getString("name");
@@ -44,6 +48,8 @@ public class DataLoader {
         return sheet;
     }
 
+    // REQUIRES: sheet != null && rows != null
+    // EFFECTS: parse the json array for rows of a sheet and add the rows to the sheet object
     private void parseRows(Sheet sheet, JSONArray rows) {
         for (Object rowObj : rows) {
             Row row = new Row();
@@ -64,6 +70,8 @@ public class DataLoader {
         }
     }
 
+    // REQUIRES: sheet != null && schema != null
+    // EFFECTS: parse the json array for schema of a sheet and add the schema to the sheet object
     private void parseSchema(Sheet sheet, JSONArray schema) {
         for (Object colObj : schema) {
             String name = ((JSONObject)colObj).getString("name");

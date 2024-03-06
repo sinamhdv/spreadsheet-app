@@ -69,6 +69,7 @@ public class SheetEditor extends Menu {
         System.out.println("Sum of row #" + index + " is " + sum);
     }
 
+    // EFFECTS: command handler for 'save' command
     public void handleSaveSheet(Matcher matcher) {
         // TODO
     }
