@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 
 import org.json.JSONObject;
 import org.json.JSONArray;
+import org.json.JSONException;
 
 import model.Column;
 import model.DataType;
@@ -62,7 +63,11 @@ public class DataLoader {
                         row.getCells().add(new StringCell(((JSONObject)cellObj).getString("data")));
                         break;
                     default:    // NUMBER
-                        row.getCells().add(new NumberCell(((JSONObject)cellObj).getDouble("data")));
+                        try {
+                            row.getCells().add(new NumberCell(((JSONObject)cellObj).getDouble("data")));
+                        } catch (JSONException ex) {
+                            row.getCells().add(new NumberCell(null));
+                        }
                         break;
                 }
                 index++;

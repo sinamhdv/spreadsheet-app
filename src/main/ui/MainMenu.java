@@ -26,7 +26,9 @@ public class MainMenu extends Menu {
         ErrorMessage error = Sheet.create(matcher.group("name"), matcher.group("args").strip().split("\\s+"));
         if (error != null) {
             showAlert(error);
+            return;
         }
+        SheetEditor.getInstance().run();
     }
 
     // EFFECTS: command handler for 'open' command
@@ -34,6 +36,8 @@ public class MainMenu extends Menu {
         ErrorMessage error = Sheet.load(matcher.group("path"));
         if (error != null) {
             showAlert(error);
+            return;
         }
+        SheetEditor.getInstance().run();
     }
 }

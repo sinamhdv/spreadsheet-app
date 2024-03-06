@@ -12,6 +12,7 @@ import model.Sheet;
 // tests for data loader class
 public class DataLoaderTest {
     private static final String LOAD_PATH = "./data/testLoadSheet.json";
+    private static final String LOAD_MISSING_PATH = "./data/testLoadMissing.json";
 
     @Test
     void testIOErrors() {
@@ -31,5 +32,12 @@ public class DataLoaderTest {
         assertEquals("string1", sheet.getRows().get(0).getCells().get(1).getData());
         assertEquals(-123456789.0, sheet.getRows().get(1).getCells().get(0).getData());
         assertEquals("a very long string 2", sheet.getRows().get(1).getCells().get(1).getData());
+    }
+
+    @Test
+    void testLoadMissing() {
+        assertNull(Sheet.load(LOAD_MISSING_PATH));
+        Sheet sheet = Sheet.getCurrentSheet();
+        assertNull(sheet.getRows().get(0).getCells().get(0).getData());
     }
 }

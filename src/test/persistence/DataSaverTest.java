@@ -25,7 +25,7 @@ public class DataSaverTest {
         Sheet.create("sheetName", new String[] {"A:STRING", "B:NUMBER"});
         sheet = Sheet.getCurrentSheet();
         sheet.insertRow(new String[] {"str1", "987.6543"});
-        sheet.insertRow(new String[] {"str2", "-137"});
+        sheet.insertRow(new String[] {"str2", "abcd"});
     }
 
     @Test
@@ -46,6 +46,6 @@ public class DataSaverTest {
         assertEquals("str1", sheet.getRows().get(0).getCells().get(0).getData());
         assertEquals(987.6543, sheet.getRows().get(0).getCells().get(1).getData());
         assertEquals("str2", sheet.getRows().get(1).getCells().get(0).getData());
-        assertEquals(-137.0, sheet.getRows().get(1).getCells().get(1).getData());
+        assertNull(sheet.getRows().get(1).getCells().get(1).getData());
     }
 }
