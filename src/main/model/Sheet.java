@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import persistence.DataLoader;
+import persistence.DataSaver;
+
 // a spreadsheet/table of information
 public class Sheet {
     private String name;
@@ -96,11 +99,21 @@ public class Sheet {
         return rows.get(index - 1).getSum(schema);
     }
 
+    // EFFECTS: save the sheet object in the given file. returns an ErrorMessage or null if succeeded
+    public ErrorMessage save(String path) {
+        try {
+            new DataSaver(path).saveSheet(this);
+            return null;
+        } catch (Exception ex) {
+            return ErrorMessage.SAVE_ERROR;
+        }
+    }
+
     public static Sheet getCurrentSheet() {
         return currentSheet;
     }
 
-    // MODIFIES: sheets
+    // MODIFIES: currentSheet
     // EFFECTS: create a new sheet. returns an ErrorMessage or null if succeeded
     public static ErrorMessage create(String name, String[] args) {
         Sheet sheet = new Sheet(name);
@@ -110,5 +123,16 @@ public class Sheet {
         }
         currentSheet = sheet;
         return null;
+    }
+
+    // MODIFIES: currentSheet
+    // EFFECTS: load the currentSheet from a file. returns an ErrorMessage or null if succeeded
+    public static ErrorMessage load(String path) {
+        try {
+            currentSheet = new DataLoader(path).loadSheet();
+            return null;
+        } catch (Exception ex) {
+            return ErrorMessage.LOAD_ERROR;
+        }
     }
 }
