@@ -1,0 +1,23 @@
+{
+    "schema": [
+        {
+            "name": "A",
+            "type": "STRING"
+        },
+        {
+            "name": "B",
+            "type": "NUMBER"
+        }
+    ],
+    "name": "sheetName",
+    "rows": [
+        {"cells": [
+            {"data": "str1"},
+            {"data": 987.6543}
+        ]},
+        {"cells": [
+            {"data": "str2"},
+            {"data": -137}
+        ]}
+    ]
+}

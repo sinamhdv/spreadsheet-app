@@ -4,6 +4,8 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.fail;
 
+import java.io.IOException;
+
 import org.junit.jupiter.api.Test;
 
 import model.DataType;
@@ -12,7 +14,7 @@ import model.Sheet;
 public class DataLoaderTest {
     @Test
     void testIOErrors() {
-        assertThrows(Exception.class, () -> new DataLoader("./data/nonexistent.json").loadSheet());
+        assertThrows(IOException.class, () -> new DataLoader("./data/nonexistent.json").loadSheet());
     }
 
     @Test
