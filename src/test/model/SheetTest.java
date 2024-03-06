@@ -9,7 +9,7 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-// tests for non-static functions in Sheet class
+// tests for Sheet class
 public class SheetTest {
     private Sheet sheet;
 
