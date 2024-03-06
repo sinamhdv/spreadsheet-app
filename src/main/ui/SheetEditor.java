@@ -71,7 +71,10 @@ public class SheetEditor extends Menu {
 
     // EFFECTS: command handler for 'save' command
     public void handleSaveSheet(Matcher matcher) {
-        // TODO
+        ErrorMessage error = Sheet.getCurrentSheet().save(matcher.group("path"));
+        if (error != null) {
+            showAlert(error);
+        }
     }
 
     // EFFECTS: display the whole sheet

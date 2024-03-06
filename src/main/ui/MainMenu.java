@@ -31,6 +31,9 @@ public class MainMenu extends Menu {
 
     // EFFECTS: command handler for 'open' command
     public void handleOpenSheet(Matcher matcher) {
-        // TODO
+        ErrorMessage error = Sheet.load(matcher.group("path"));
+        if (error != null) {
+            showAlert(error);
+        }
     }
 }
