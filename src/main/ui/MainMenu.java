@@ -25,7 +25,7 @@ public class MainMenu extends JFrame {
     }
 
     private void setupWindow() {
-        setTitle("Main Menu");
+        setTitle("Sheets");
         setSize(WINDOW_DIMENSION);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
