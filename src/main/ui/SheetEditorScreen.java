@@ -1,5 +1,6 @@
 package ui;
 
+import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -22,11 +23,15 @@ import model.Sheet;
 // the application screen where the sheets are displayed and edited
 public class SheetEditorScreen extends JPanel {
     private static final int TABLE_ROW_HEIGHT = 40;
+    private static final Dimension CONTROL_PANEL_SIZE = new Dimension(2000, 50);
 
     private DefaultTableModel table = new DefaultTableModel();
 
     private List<JTextField> addingFields = new ArrayList<>();
     private JComboBox<String> selectedColumnCombo;
+    private JTextField searchQueryField;
+
+    private List<Row> rowsToDisplay = Sheet.getCurrentSheet().getRows();
 
     // EFFECTS: construct a new SheetEditorScreen object and add necessary GUI parts to it
     public SheetEditorScreen() {
@@ -42,7 +47,7 @@ public class SheetEditorScreen extends JPanel {
     //          and adding all rows to the table again
     private void refreshSheetDisplay() {
         table.setRowCount(0);
-        for (Row row : Sheet.getCurrentSheet().getRows()) {
+        for (Row row : rowsToDisplay) {
             int colIndex = 0;
             String[] rowData = new String[row.getCells().size()];
             for (Cell cell : row.getCells()) {
@@ -65,7 +70,7 @@ public class SheetEditorScreen extends JPanel {
     private void addEditorControls() {
         add(UIUtils.createText(Sheet.getCurrentSheet().getName()));
         JPanel editorControlsPanel = new JPanel();
-        editorControlsPanel.setMaximumSize(UIUtils.TEXT_FIELD_DIMENSION);
+        editorControlsPanel.setMaximumSize(CONTROL_PANEL_SIZE);
         addControlsPanelParts(editorControlsPanel);
         add(editorControlsPanel);
         
@@ -84,6 +89,7 @@ public class SheetEditorScreen extends JPanel {
         jtable.setRowHeight(TABLE_ROW_HEIGHT);
         jtable.setFont(jtable.getFont().deriveFont(UIUtils.TEXT_SIZE));
         jtable.getTableHeader().setReorderingAllowed(false);
+        jtable.getTableHeader().setFont(jtable.getTableHeader().getFont().deriveFont(UIUtils.TEXT_SIZE));
         add(new JScrollPane(jtable));
     }
 
@@ -96,11 +102,19 @@ public class SheetEditorScreen extends JPanel {
         for (Column column : columns) {
             colNames[index++] = column.getName();
         }
+        searchQueryField = UIUtils.createTextField();
+        controlsPanel.add(searchQueryField);
         selectedColumnCombo = UIUtils.createComboBox(colNames);
         controlsPanel.add(selectedColumnCombo);
         JButton sortButton = UIUtils.createButton("Sort");
         sortButton.addActionListener(this::handleSortButton);
         controlsPanel.add(sortButton);
+        JButton searchButton = UIUtils.createButton("Search");
+        searchButton.addActionListener(this::handleSearchButton);
+        controlsPanel.add(searchButton);
+        JButton revertButton = UIUtils.createButton("Revert search");
+        revertButton.addActionListener(this::handleRevertButton);
+        controlsPanel.add(revertButton);
     }
     
     // MODIFIES: this
@@ -131,6 +145,22 @@ public class SheetEditorScreen extends JPanel {
             addingData[i] = addingFields.get(i).getText();
         }
         Sheet.getCurrentSheet().insertRow(addingData);
+        refreshSheetDisplay();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: search a column for a value and filter rows based on that
+    private void handleSearchButton(ActionEvent e) {
+        rowsToDisplay = Sheet.getCurrentSheet().search(
+            (String)selectedColumnCombo.getSelectedItem(),
+            searchQueryField.getText());
+        refreshSheetDisplay();
+    }
+
+    // MODIFIES: this
+    // EFFECTS: revert the search by displaying all rows instead of the filtered ones
+    private void handleRevertButton(ActionEvent e) {
+        rowsToDisplay = Sheet.getCurrentSheet().getRows();
         refreshSheetDisplay();
     }
 }
