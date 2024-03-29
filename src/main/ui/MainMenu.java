@@ -22,6 +22,7 @@ import model.Sheet;
 // the main menu of the application
 public class MainMenu extends JFrame {
     private static final String LOADING_POPUP_GIF = "data/loading.gif";
+    private static final String STARTUP_IMAGE = "data/cmatrix.png";
     private static final Dimension WINDOW_DIMENSION = new Dimension(3000, 1700);
     
     private Container window = getContentPane();
@@ -29,6 +30,7 @@ public class MainMenu extends JFrame {
     public MainMenu() {
         setupWindow();
         addMenuBar();
+        addStartupImage();
         setVisible(true);
     }
 
@@ -37,6 +39,12 @@ public class MainMenu extends JFrame {
         setSize(WINDOW_DIMENSION);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+    }
+
+    private void addStartupImage() {
+        ImageIcon image = new ImageIcon(STARTUP_IMAGE);
+        JLabel label = new JLabel(image);
+        window.add(label);
     }
 
     private void addMenuBar() {
