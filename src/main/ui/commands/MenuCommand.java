@@ -3,8 +3,8 @@ package ui.commands;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import ui.menus.CommandLineMainMenu;
-import ui.menus.CommandLineSheetEditor;
+import ui.cli.CommandLineMainMenu;
+import ui.cli.CommandLineSheetEditor;
 
 // enum representing regex pattern and handler method for terminal commands
 public enum MenuCommand {

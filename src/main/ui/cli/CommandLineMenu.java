@@ -1,4 +1,4 @@
-package ui.menus;
+package ui.cli;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
