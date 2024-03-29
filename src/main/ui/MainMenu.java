@@ -1,11 +1,10 @@
 package ui;
 
-import java.awt.CardLayout;
+import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -16,7 +15,8 @@ import javax.swing.KeyStroke;
 public class MainMenu extends JFrame {
     private static final Dimension WINDOW_DIMENSION = new Dimension(3000, 1700);
     private static final float MENU_FONT_SIZE = 25;
-    private CardLayout cardLayout = new CardLayout();
+    
+    private Container window = getContentPane();
 
     public MainMenu() {
         setupWindow();
@@ -25,16 +25,10 @@ public class MainMenu extends JFrame {
     }
 
     private void setupWindow() {
-        setLayout(cardLayout);
         setTitle("Main Menu");
         setSize(WINDOW_DIMENSION);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
-
-        JButton b1 = new JButton("button A");
-        JButton b2 = new JButton("button B");
-        add(b1);
-        add(b2);
     }
 
     private void addMenuBar() {
@@ -43,12 +37,12 @@ public class MainMenu extends JFrame {
         JMenu fileMenu = new JMenu("File");
         fileMenu.setFont(fileMenu.getFont().deriveFont(MENU_FONT_SIZE));
         menuBar.add(fileMenu);
-        addMenuItem(fileMenu, new NewSheetAction(), KeyStroke.getKeyStroke("control N"));
-        addMenuItem(fileMenu, new OpenSheetAction(), KeyStroke.getKeyStroke("control O"));
-        addMenuItem(fileMenu, new SaveSheetAction(), KeyStroke.getKeyStroke("control S"));
+        addMenuBarItem(fileMenu, new NewSheetAction(), KeyStroke.getKeyStroke("control N"));
+        addMenuBarItem(fileMenu, new OpenSheetAction(), KeyStroke.getKeyStroke("control O"));
+        addMenuBarItem(fileMenu, new SaveSheetAction(), KeyStroke.getKeyStroke("control S"));
     }
 
-    private void addMenuItem(JMenu menu, AbstractAction action, KeyStroke keyBinding) {
+    private void addMenuBarItem(JMenu menu, AbstractAction action, KeyStroke keyBinding) {
         JMenuItem menuItem = new JMenuItem(action);
         menuItem.setFont(menuItem.getFont().deriveFont(MENU_FONT_SIZE));
         menuItem.setAccelerator(keyBinding);
@@ -62,7 +56,9 @@ public class MainMenu extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("NEW");
+            window.removeAll();
+            window.add(new NewSheetInputForm());
+            window.revalidate();
         }
     }
 
