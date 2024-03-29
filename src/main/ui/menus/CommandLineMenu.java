@@ -1,4 +1,4 @@
-package ui;
+package ui.menus;
 
 import java.util.Scanner;
 import java.util.regex.Matcher;
@@ -7,7 +7,7 @@ import model.ErrorMessage;
 import ui.commands.MenuCommand;
 
 // shared methods between different menus
-public abstract class Menu {
+public abstract class CommandLineMenu {
     private static final Scanner SCANNER = new Scanner(System.in);
 
     // EFFECTS: print the menu prompt

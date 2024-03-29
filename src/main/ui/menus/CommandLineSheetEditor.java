@@ -1,4 +1,4 @@
-package ui;
+package ui.menus;
 
 import java.util.List;
 import java.util.regex.Matcher;
@@ -10,15 +10,15 @@ import model.Row;
 import model.Sheet;
 
 // the initial menu of the application
-public class SheetEditor extends Menu {
+public class CommandLineSheetEditor extends CommandLineMenu {
     private static final int CELL_REPR_WIDTH = 16;
 
-    private static SheetEditor instance;
+    private static CommandLineSheetEditor instance;
 
     // MODIFIES: instance
     // EFFECTS: returns a singleton instance of SheetEditor
-    public static SheetEditor getInstance() {
-        return (instance == null ? (instance = new SheetEditor()) : instance);
+    public static CommandLineSheetEditor getInstance() {
+        return (instance == null ? (instance = new CommandLineSheetEditor()) : instance);
     }
 
     // EFFECTS: print terminal prompt
