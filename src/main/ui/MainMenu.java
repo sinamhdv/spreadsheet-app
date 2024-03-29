@@ -5,11 +5,15 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+
+import model.ErrorMessage;
+import model.Sheet;
 
 // the main menu of the application
 public class MainMenu extends JFrame {
@@ -69,7 +73,17 @@ public class MainMenu extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("OPEN");
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                ErrorMessage error = Sheet.load(fileChooser.getSelectedFile().getPath());
+                if (error != null) {
+                    UIUtils.showError(error.getText());
+                    return;
+                }
+                window.removeAll();
+                window.add(new SheetEditorScreen());
+                window.revalidate();
+            }
         }
     }
 
@@ -80,7 +94,14 @@ public class MainMenu extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
-            System.out.println("SAVE");
+            JFileChooser fileChooser = new JFileChooser();
+            if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
+                ErrorMessage error = Sheet.getCurrentSheet().save(fileChooser.getSelectedFile().getPath());
+                if (error != null) {
+                    UIUtils.showError(error.getText());
+                    return;
+                }
+            }
         }
     }
 
