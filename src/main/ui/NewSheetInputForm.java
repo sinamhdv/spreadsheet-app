@@ -86,7 +86,7 @@ public class NewSheetInputForm extends JPanel {
         }
         Sheet.create(name, schema);
         window.removeAll();
-        window.add(new SheetEditorScreen(window));
+        window.add(new SheetEditorScreen());
         window.revalidate();
     }
 }

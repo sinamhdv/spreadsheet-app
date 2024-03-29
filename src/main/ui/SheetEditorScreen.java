@@ -1,6 +1,5 @@
 package ui;
 
-import java.awt.Container;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -20,17 +19,15 @@ import model.Row;
 import model.Sheet;
 
 public class SheetEditorScreen extends JPanel {
-    private Container window;
+    private static final int TABLE_ROW_HEIGHT = 40;
 
     private DefaultTableModel table = new DefaultTableModel();
 
     private List<JTextField> addingFields = new ArrayList<>();
     private JComboBox<String> selectedColumnCombo;
 
-    public SheetEditorScreen(Container window) {
+    public SheetEditorScreen() {
         super();
-        this.window = window;
-
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         addEditorControls();
         setTableSchema();
@@ -47,8 +44,6 @@ public class SheetEditorScreen extends JPanel {
             }
             table.addRow(rowData);
         }
-        // window.revalidate();
-        // window.repaint();
     }
 
     private void setTableSchema() {
@@ -70,7 +65,13 @@ public class SheetEditorScreen extends JPanel {
         addAddingPanelParts(addingPanel);
         add(addingPanel);
 
-        JTable jtable = new JTable(table);
+        JTable jtable = new JTable(table) {
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                return false;
+            }
+        };
+        jtable.setRowHeight(TABLE_ROW_HEIGHT);
         jtable.setFont(jtable.getFont().deriveFont(UIUtils.TEXT_SIZE));
         add(jtable);
     }
