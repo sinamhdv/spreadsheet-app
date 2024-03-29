@@ -9,6 +9,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
@@ -82,7 +83,8 @@ public class SheetEditorScreen extends JPanel {
         };
         jtable.setRowHeight(TABLE_ROW_HEIGHT);
         jtable.setFont(jtable.getFont().deriveFont(UIUtils.TEXT_SIZE));
-        add(jtable);
+        jtable.getTableHeader().setReorderingAllowed(false);
+        add(new JScrollPane(jtable));
     }
 
     // MODIFIES: this

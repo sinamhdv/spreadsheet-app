@@ -85,10 +85,8 @@ public class NewSheetInputForm extends JPanel {
         String name = nameField.getText();
         int count = Integer.parseInt(columnsCountField.getText());
         String[] schema = new String[count];
-        System.out.println(name);
         for (int i = 0; i < count; i++) {
             schema[i] = columnNameFields.get(i).getText() + ":" + columnDataTypeBox.get(i).getSelectedItem();
-            System.out.println(schema[i]);
         }
         Sheet.create(name, schema);
         window.removeAll();
