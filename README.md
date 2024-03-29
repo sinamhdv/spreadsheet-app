@@ -17,8 +17,8 @@ This program can be used to edit and save data, and make calculations based on d
 
 # Instructions for Grader
 
-- You can generate the first required action related to the user story "adding multiple Xs to a Y" by creating/opening a sheet and then entering data in the text fields above the sheet table and pressing the "add" button.
-- You can generate the second required action related to the user story "adding multiple Xs to a Y" by selecting a column name in the combo box above the sheet table and pressing the "sort" button beside it to sort the table according to that column.
-- You can locate my visual component in the initial page of the application (the background image)
+- You can generate the first required action related to the user story "adding multiple Xs to a Y" by creating/opening a sheet and then entering data in the text fields above the sheet table and pressing the "add" button to add a new row.
+- You can generate the second required action related to the user story "adding multiple Xs to a Y" by selecting a column name in the combo box above the sheet table and pressing the "sort" button beside it to sort the table according to that column, or enter a search query in the text field next to it and select a column, and search that column for that query by pressing the search button.
+- You can locate my visual component in the initial page of the application (the background image) and the progress GIF displayed after saving a sheet.
 - You can save the state of my application by selecting the "save" option in the menu bar (or Ctrl+S)
 - You can reload the state of my application by selecting the "open" option in the menu bar (or Ctrl+O)
