@@ -13,9 +13,8 @@ import javax.swing.JTextField;
 
 import model.Sheet;
 
+// the input form used to create a new sheet
 public class NewSheetInputForm extends JPanel {
-    
-
     private Container window;
 
     private JTextField nameField;
@@ -24,6 +23,8 @@ public class NewSheetInputForm extends JPanel {
     private List<JTextField> columnNameFields;
     private List<JComboBox<String>> columnDataTypeBox;
 
+    // EFFECTS: construct a new object with the given parent window.
+    //          adds the initial text fields and buttons of the form.
     public NewSheetInputForm(Container window) {
         super();
         this.window = window;
@@ -40,8 +41,9 @@ public class NewSheetInputForm extends JPanel {
         add(continueButton);
     }
 
-    
-
+    // MODIFIES: this
+    // EFFECTS: handle pressing of Continue button by removing old GUI elements
+    //          and loading multiple text fields to get input for table schema.
     private void handleContinueButton(ActionEvent e) {
         try {
             int columns = Integer.parseInt(columnsCountField.getText());
@@ -54,6 +56,8 @@ public class NewSheetInputForm extends JPanel {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: show input fields required to get info about table schema
     private void showSchemaInputFields(int colCount) {
         removeAll();
         add(UIUtils.createText("Select column name and types:"));
@@ -75,6 +79,8 @@ public class NewSheetInputForm extends JPanel {
         repaint();
     }
 
+    // MODIFIES: this, Sheet.getCurrentSheet()
+    // EFFECTS: creates a new sheet with the given information after the Create button is pressed
     private void handleCreateButton(ActionEvent e) {
         String name = nameField.getText();
         int count = Integer.parseInt(columnsCountField.getText());

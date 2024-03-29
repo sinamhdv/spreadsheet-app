@@ -18,6 +18,7 @@ import model.Column;
 import model.Row;
 import model.Sheet;
 
+// the application screen where the sheets are displayed and edited
 public class SheetEditorScreen extends JPanel {
     private static final int TABLE_ROW_HEIGHT = 40;
 
@@ -26,6 +27,7 @@ public class SheetEditorScreen extends JPanel {
     private List<JTextField> addingFields = new ArrayList<>();
     private JComboBox<String> selectedColumnCombo;
 
+    // EFFECTS: construct a new SheetEditorScreen object and add necessary GUI parts to it
     public SheetEditorScreen() {
         super();
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
@@ -34,6 +36,9 @@ public class SheetEditorScreen extends JPanel {
         refreshSheetDisplay();
     }
 
+    // MODIFIES: this
+    // EFFECTS: refresh the GUI sheet display by removing all rows from the table
+    //          and adding all rows to the table again
     private void refreshSheetDisplay() {
         table.setRowCount(0);
         for (Row row : Sheet.getCurrentSheet().getRows()) {
@@ -46,12 +51,16 @@ public class SheetEditorScreen extends JPanel {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: set the column names for the graphical table
     private void setTableSchema() {
         for (Column column : Sheet.getCurrentSheet().getSchema()) {
             table.addColumn(column.getName());
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: add control buttons for the editor screen
     private void addEditorControls() {
         add(UIUtils.createText(Sheet.getCurrentSheet().getName()));
         JPanel editorControlsPanel = new JPanel();
@@ -76,6 +85,8 @@ public class SheetEditorScreen extends JPanel {
         add(jtable);
     }
 
+    // MODIFIES: this
+    // EFFECTS: add parts to the control panel of the editor (sort button, combo box, etc.)
     private void addControlsPanelParts(JPanel controlsPanel) {
         List<Column> columns = Sheet.getCurrentSheet().getSchema();
         String[] colNames = new String[columns.size()];
@@ -90,6 +101,8 @@ public class SheetEditorScreen extends JPanel {
         controlsPanel.add(sortButton);
     }
     
+    // MODIFIES: this
+    // EFFECTS: add text fields and a button to the row insertion panel
     private void addAddingPanelParts(JPanel addingPanel) {
         int count = Sheet.getCurrentSheet().getSchema().size();
         for (int i = 0; i < count; i++) {
@@ -101,11 +114,15 @@ public class SheetEditorScreen extends JPanel {
         addingPanel.add(addButton);
     }
 
+    // MODIFIES: this, Sheet.getCurrentSheet()
+    // EFFECTS: handle the pressing of Sort button. Sort the sheet and refresh GUI display
     private void handleSortButton(ActionEvent e) {
         Sheet.getCurrentSheet().sortBy((String)selectedColumnCombo.getSelectedItem());
         refreshSheetDisplay();
     }
 
+    // MODIFIES: this, Sheet.getCurrentSheet()
+    // EFFECTS: handle the pressing of Add button. Add a new row to the table and refresh GUI
     private void handleAddButton(ActionEvent e) {
         String[] addingData = new String[addingFields.size()];
         for (int i = 0; i < addingFields.size(); i++) {
