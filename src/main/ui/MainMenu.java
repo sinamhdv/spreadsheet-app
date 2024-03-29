@@ -57,7 +57,7 @@ public class MainMenu extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             window.removeAll();
-            window.add(new NewSheetInputForm());
+            window.add(new NewSheetInputForm(window));
             window.revalidate();
         }
     }
