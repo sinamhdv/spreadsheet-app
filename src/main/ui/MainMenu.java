@@ -74,6 +74,7 @@ public class MainMenu extends JFrame {
         menu.add(menuItem);
     }
 
+    // action class to handle "new" menu item
     private class NewSheetAction extends AbstractAction {
         // EFFECTS: construct a new NewSheetAction object
         NewSheetAction() {
@@ -90,6 +91,7 @@ public class MainMenu extends JFrame {
         }
     }
 
+    // action class to handle "open" menu item
     private class OpenSheetAction extends AbstractAction {
         // EFFECTS: construct a new OpenSheetAction object
         OpenSheetAction() {
@@ -114,6 +116,7 @@ public class MainMenu extends JFrame {
         }
     }
 
+    // action class to handle "save" menu item
     private class SaveSheetAction extends AbstractAction {
         // EFFECTS: construct a SaveSheetAction object
         SaveSheetAction() {
