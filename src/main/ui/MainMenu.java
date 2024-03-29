@@ -5,20 +5,24 @@ import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 
 import javax.swing.AbstractAction;
+import javax.swing.ImageIcon;
+import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
+import javax.swing.Timer;
 
 import model.ErrorMessage;
 import model.Sheet;
 
 // the main menu of the application
 public class MainMenu extends JFrame {
+    private static final String LOADING_POPUP_GIF = "data/loading.gif";
     private static final Dimension WINDOW_DIMENSION = new Dimension(3000, 1700);
-    private static final float MENU_FONT_SIZE = 25;
     
     private Container window = getContentPane();
 
@@ -39,7 +43,7 @@ public class MainMenu extends JFrame {
         JMenuBar menuBar = new JMenuBar();
         setJMenuBar(menuBar);
         JMenu fileMenu = new JMenu("File");
-        fileMenu.setFont(fileMenu.getFont().deriveFont(MENU_FONT_SIZE));
+        fileMenu.setFont(fileMenu.getFont().deriveFont(UIUtils.TEXT_SIZE));
         menuBar.add(fileMenu);
         addMenuBarItem(fileMenu, new NewSheetAction(), KeyStroke.getKeyStroke("control N"));
         addMenuBarItem(fileMenu, new OpenSheetAction(), KeyStroke.getKeyStroke("control O"));
@@ -48,7 +52,7 @@ public class MainMenu extends JFrame {
 
     private void addMenuBarItem(JMenu menu, AbstractAction action, KeyStroke keyBinding) {
         JMenuItem menuItem = new JMenuItem(action);
-        menuItem.setFont(menuItem.getFont().deriveFont(MENU_FONT_SIZE));
+        menuItem.setFont(menuItem.getFont().deriveFont(UIUtils.TEXT_SIZE));
         menuItem.setAccelerator(keyBinding);
         menu.add(menuItem);
     }
@@ -94,6 +98,10 @@ public class MainMenu extends JFrame {
 
         @Override
         public void actionPerformed(ActionEvent e) {
+            if (Sheet.getCurrentSheet() == null) {
+                UIUtils.showError("No sheet open");
+                return;
+            }
             JFileChooser fileChooser = new JFileChooser();
             if (fileChooser.showSaveDialog(null) == JFileChooser.APPROVE_OPTION) {
                 ErrorMessage error = Sheet.getCurrentSheet().save(fileChooser.getSelectedFile().getPath());
@@ -101,8 +109,26 @@ public class MainMenu extends JFrame {
                     UIUtils.showError(error.getText());
                     return;
                 }
+                displayLoadingPopup();
             }
         }
+    }
+
+    private void displayLoadingPopup() {
+        JDialog dialog = new JDialog(this, "Loading", true);
+        ImageIcon image = new ImageIcon(LOADING_POPUP_GIF);
+        JLabel label = new JLabel(image);
+        dialog.add(label);
+        dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        dialog.setSize(image.getIconWidth(), image.getIconHeight());
+        dialog.setLocationRelativeTo(this);
+        Timer timer = new Timer(1000, (e) -> {
+            dialog.setVisible(false);
+            dialog.dispose();
+        });
+        timer.setRepeats(false);
+        timer.start();
+        dialog.setVisible(true);
     }
 
     // EFFECTS: program entrypoint
