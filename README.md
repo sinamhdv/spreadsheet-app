@@ -15,7 +15,7 @@ This program can be used to edit and save data, and make calculations based on d
 - As a user, I want to be able to have the option of saving the entire current spreadsheet into a file
 - As a user, I want to be able to have the option of loading a spreadsheet from a file and editing it
 
-# Instructions for Grader
+## Instructions for Grader
 
 - You can generate the first required action related to the user story "adding multiple Xs to a Y" by creating/opening a sheet and then entering data in the text fields above the sheet table and pressing the "add" button to add a new row.
 - You can generate the second required action related to the user story "adding multiple Xs to a Y" by selecting a column name in the combo box above the sheet table and pressing the "sort" button beside it to sort the table according to that column, or enter a search query in the text field next to it and select a column, and search that column for that query by pressing the search button.
