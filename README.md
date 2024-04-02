@@ -22,3 +22,29 @@ This program can be used to edit and save data, and make calculations based on d
 - You can locate my visual component in the initial page of the application (the background image) and the progress GIF displayed after saving a sheet.
 - You can save the state of my application by selecting the "save" option in the menu bar (or Ctrl+S)
 - You can reload the state of my application by selecting the "open" option in the menu bar (or Ctrl+O)
+
+## Phase 4: Task 2 (Sample Logs)
+
+```
+Logs:
+Mon Apr 01 19:57:41 PDT 2024
+added a new row to sheet 'class-A-grades' with data: student-1;98;88;70
+Mon Apr 01 19:57:50 PDT 2024
+added a new row to sheet 'class-A-grades' with data: student-4;98;88;70
+Mon Apr 01 19:58:04 PDT 2024
+added a new row to sheet 'class-A-grades' with data: student-3;90;80;73
+Mon Apr 01 19:58:20 PDT 2024
+added a new row to sheet 'class-A-grades' with data: student-2;93;75;99
+Mon Apr 01 19:58:25 PDT 2024
+sorted sheet 'class-A-grades' by column 'name'
+Mon Apr 01 19:58:33 PDT 2024
+sorted sheet 'class-A-grades' by column 'math'
+Mon Apr 01 19:58:44 PDT 2024
+sorted sheet 'class-A-grades' by column 'phys'
+Mon Apr 01 19:58:53 PDT 2024
+sorted sheet 'class-A-grades' by column 'chem'
+Mon Apr 01 19:59:15 PDT 2024
+searched column 'chem' of sheet 'class-A-grades' for query '70' and found 2 matches
+Mon Apr 01 19:59:20 PDT 2024
+searched column 'chem' of sheet 'class-A-grades' for query '79' and found 0 matches
+```
