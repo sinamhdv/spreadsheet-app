@@ -3,6 +3,8 @@ package ui;
 import java.awt.Container;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 import javax.swing.AbstractAction;
 import javax.swing.ImageIcon;
@@ -17,6 +19,8 @@ import javax.swing.KeyStroke;
 import javax.swing.Timer;
 
 import model.ErrorMessage;
+import model.Event;
+import model.EventLog;
 import model.Sheet;
 
 // the main menu of the application
@@ -42,6 +46,17 @@ public class MainMenu extends JFrame {
         setSize(WINDOW_DIMENSION);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        addWindowListener(new WindowAdapter() {
+            // EFFECTS: print all logged events and exit the application
+            @Override
+            public void windowClosing(WindowEvent e) {
+                System.out.println("Logs:");
+                for (Event event : EventLog.getInstance()) {
+                    System.out.println(event.toString());
+                }
+                System.exit(0);
+            }
+        });
     }
 
     // MODIFIES: this
