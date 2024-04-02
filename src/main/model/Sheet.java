@@ -45,6 +45,11 @@ public class Sheet {
             row.getCells().add(Cell.of(col.getType(), data[i]));
         }
         rows.add(row);
+        String logMessage = String.format("added a new row to sheet '%s' with data: ", name);
+        for (int i = 0; i < data.length; i++) {
+            logMessage += data[i] + (i == data.length - 1 ? "" : ";");
+        }
+        EventLog.getInstance().logEvent(new Event(logMessage));
         return null;
     }
 
@@ -71,6 +76,9 @@ public class Sheet {
             Cell c2 = r2.getCells().get(index);
             return c1.compareTo(c2);
         });
+        EventLog.getInstance().logEvent(new Event(String.format(
+                "sorted sheet '%s' by column '%s'",
+                name, colName)));
         return null;
     }
 
@@ -88,6 +96,9 @@ public class Sheet {
                 result.add(row);
             }
         }
+        EventLog.getInstance().logEvent(new Event(String.format(
+                "searched column '%s' of sheet '%s' for query '%s' and found %d matches",
+                name, this.name, data, result.size())));
         return result;
     }
 
