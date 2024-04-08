@@ -48,3 +48,11 @@ searched column 'chem' of sheet 'class-A-grades' for query '70' and found 2 matc
 Mon Apr 01 19:59:20 PDT 2024
 searched column 'chem' of sheet 'class-A-grades' for query '79' and found 0 matches
 ```
+
+## Phase 4: Task 3
+
+If I had more time to work on this project, one refactoring I would do could be not using static values
+for the dimensions of GUI elements and the window, and taking the screen size into account to dynamically determine those.
+So, I would write a function to dynamically determine the window size and return a `Dimension` object, and then I would use that function instead of the constant defined to create the window.
+
+Another possible refactoring is extracting smaller functions from `SheetEditorScreen::addEditorControls`, as this function is pretty long and is doing a number of different tasks. So I could instead divide its functionality into smaller helper functions.
